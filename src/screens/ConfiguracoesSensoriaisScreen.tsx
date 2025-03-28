@@ -1,8 +1,8 @@
-import Slider from '@react-native-community/slider';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Slider from '@react-native-community/slider';
 
-const ConfiguracoesSensoriaisScreen = () => {
+const ConfiguracoesSensoriaisScreen: React.FC = () => {
   const [brightness, setBrightness] = useState(0.5);
   const [contrast, setContrast] = useState(0.5);
 

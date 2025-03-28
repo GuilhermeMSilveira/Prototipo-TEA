@@ -1,9 +1,15 @@
+// src/screens/LoginScreen.tsx
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const LoginScreen = ({ navigation }: any) => {
+type LoginScreenProps = StackScreenProps<RootStackParamList, 'Login'>;
+
+const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -13,7 +19,7 @@ const LoginScreen = ({ navigation }: any) => {
       await signInWithEmailAndPassword(auth, email, password);
       navigation.navigate('Home');
     } catch (error: any) {
-      setErrorMessage(error.message);
+      setErrorMessage('Erro ao fazer login: ' + error.message);
     }
   };
 
@@ -37,6 +43,7 @@ const LoginScreen = ({ navigation }: any) => {
       />
       {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
       <Button title="Entrar" onPress={handleLogin} />
+      <Button title="Cadastrar" onPress={() => navigation.navigate('Register')} />
     </View>
   );
 };

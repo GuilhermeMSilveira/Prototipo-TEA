@@ -1,20 +1,19 @@
-// src/config/firebaseConfig.ts
-
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
-// Configuração do Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyA7W3xmnKjnnBJ7LBFiiHEM-jItJZIPDWk',
-  authDomain: 'teste.com',
+  authDomain: 'testeuser@gmail.com',
   projectId: 'guilhermem-29d59',
-  storageBucket: 'teste.com',
+  storageBucket: 'Teste.projetoTCC',
   messagingSenderId: '1033451552965',
-  appId: '1:1033451552965:android:7865c287f0e66d3507b0ac',
+  appId: '1:1033451552965:android:db6ae67c3953668507b0ac',
 };
 
-// Inicializar o Firebase
+// Inicializa o app Firebase
 const app = initializeApp(firebaseConfig);
+
+// Obtém a instância de autenticação
 const auth = getAuth(app);
 
 export { auth };

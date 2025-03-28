@@ -1,8 +1,10 @@
-export const analisarDesempenho = async (historico: number[]): Promise<string> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const score = historico.reduce((acc, val) => acc + val, 0) / historico.length;
-      resolve(`Seu desempenho foi de ${(score * 100).toFixed(2)}%`);
-    }, 2000);
-  });
-};
+import * as tf from '@tensorflow/tfjs';
+
+export async function analisarPadrao(historicoRespostas: number[]) {
+  const tensor = tf.tensor(historicoRespostas);
+  const mediaArray = tensor.mean().dataSync(); // Retorna Float32Array
+  const media = mediaArray[0]; // Obtém o primeiro elemento do array
+  
+  console.log('Desempenho médio:', media);
+  return media > 0.5 ? 'Avançar nível' : 'Revisar conteúdo';
+}

@@ -1,8 +1,6 @@
-// src/types/navigation.ts
-
+// src/navigation/AppNavigator.tsx
 export type RootStackParamList = {
-    Login: undefined;
-    Home: undefined;
-    // Adicione mais rotas conforme necessário
-  };
-  
+  Login: undefined;
+  Register: undefined;
+  Home: undefined;
+};

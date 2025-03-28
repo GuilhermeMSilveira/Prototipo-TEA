@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-import { analisarDesempenho } from '../uteis/aiAnalysis';
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/AppNavigator';
+import { signOut } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
 
-const HomeScreen = () => {
-  const [resultado, setResultado] = useState('');
-  const [loading, setLoading] = useState(true);
+type HomeScreenProps = StackScreenProps<RootStackParamList, 'Home'>;
 
-  useEffect(() => {
-    const historicoRespostas = [1, 0, 1, 1, 0, 1];
-
-    analisarDesempenho(historicoRespostas)
-      .then(resposta => {
-        setResultado(resposta);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error("Erro na análise de desempenho:", error);
-        setLoading(false);
-      });
-  }, []);
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigation.replace('Login'); // Retorna para a tela de login após sair
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Resultado da Análise de Desempenho:</Text>
-      {loading ? <ActivityIndicator size="large" color="#0000ff" /> : <Text style={styles.result}>{resultado}</Text>}
+      <Text>Bem-vindo à HomeScreen!</Text>
+      <Button title="Sair" onPress={handleLogout} />
+      <Button
+        title="Ajustes Sensoriais"
+        onPress={() => navigation.navigate('ConfiguracoesSensoriais')}
+      />
+      <Button
+        title="Reconhecimento de Emoções"
+        onPress={() => navigation.navigate('IAEmotion')}
+      />
     </View>
   );
 };
@@ -33,15 +34,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  result: {
-    fontSize: 16,
-    color: 'green',
   },
 });
 
