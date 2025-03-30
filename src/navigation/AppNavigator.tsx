@@ -13,6 +13,8 @@ export type RootStackParamList = {
   Register: undefined;
   ConfiguracoesSensoriais: undefined;
   IAEmotion: undefined;
+  Videos: undefined;
+
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -24,7 +26,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen 
+          <Stack.Screen 
           name="ConfiguracoesSensoriais" 
           component={ConfiguracoesSensoriaisScreen} 
           options={{ title: 'Ajustes Sensoriais' }} 

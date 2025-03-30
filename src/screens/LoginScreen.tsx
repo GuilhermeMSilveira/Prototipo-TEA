@@ -1,7 +1,5 @@
-// src/screens/LoginScreen.tsx
-
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -25,6 +23,9 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {/* Logo */}
+      <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+
       <Text>Email:</Text>
       <TextInput
         style={styles.input}
@@ -53,6 +54,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    alignItems: 'center', // Centraliza o conteúdo
+  },
+  logo: {
+    width: 200,  // Ajuste o tamanho do logo conforme necessário
+    height: 100, // Ajuste o tamanho do logo conforme necessário
+    marginBottom: 40, // Espaçamento abaixo do logo
   },
   input: {
     borderWidth: 1,
@@ -60,6 +67,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 15,
     borderRadius: 5,
+    width: '100%', // Largura total para os campos de entrada
   },
   error: {
     color: 'red',

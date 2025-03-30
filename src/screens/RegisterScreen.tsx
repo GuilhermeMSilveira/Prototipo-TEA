@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -56,6 +56,9 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {/* Logo */}
+      <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+
       <Text style={styles.label}>Email:</Text>
       <TextInput
         style={styles.input}
@@ -89,6 +92,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#f9f9f9',
+    alignItems: 'center', // Centraliza o conteúdo
+  },
+  logo: {
+    width: 200,  // Ajuste o tamanho do logo conforme necessário
+    height: 100, // Ajuste o tamanho do logo conforme necessário
+    marginBottom: 40, // Espaçamento abaixo do logo
   },
   label: {
     fontSize: 16,
@@ -102,6 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderRadius: 5,
     backgroundColor: '#fff',
+    width: '100%', // Largura total para os campos de entrada
   },
   error: {
     color: 'red',
